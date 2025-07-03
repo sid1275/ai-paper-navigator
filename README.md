@@ -3,7 +3,7 @@
 An intelligent document Q&A application that allows you to have a conversation with your PDF files. This project uses a Retrieval-Augmented Generation (RAG) pipeline to provide accurate, context-aware answers with **highlighted sources** from the original document.
 
 ![Demo GIF](https://raw.githubusercontent.com/YourUsername/ai-paper-navigator/main/assets/demo.gif)
-*(Remember to replace this with your actual GIF link!)*
+
 
 ---
 
@@ -46,8 +46,7 @@ Follow these steps to get the project running on your local machine.
 git clone https://github.com/YourUsername/ai-paper-navigator.git
 cd ai-paper-navigator
 
-2. Set up the Backend
-Generated bash
+### 2. Set up the Backend
 # Create and activate a virtual environment
 python -m venv venv
 # On Windows: .\venv\Scripts\activate
@@ -65,7 +64,7 @@ uvicorn server:app --reload
 
 The backend will be running at http://127.0.0.1:8000.
 
-3. Set up the Frontend
+### 3. Set up the Frontend
 Generated bash
 # Open a new terminal in the project root
 cd frontend
