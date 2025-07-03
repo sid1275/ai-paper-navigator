@@ -51,6 +51,7 @@ async def upload_pdf(file: UploadFile = File(...)):
         print(f"Error processing PDF: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to process PDF. Error: {e}")
 
+
 @app.post("/ask/")
 async def ask_question(request: QueryRequest):
     chain = app_state.get("chain")
@@ -58,13 +59,22 @@ async def ask_question(request: QueryRequest):
         raise HTTPException(status_code=400, detail="No chat session is active. Please upload a PDF first.")
     
     try:
-        # The chain now takes the question directly and manages history internally.
-        # The result object has a different structure.
+        # The result object from the chain will now contain 'source_documents'
         result = chain.invoke({"question": request.question})
-        return {"answer": result["answer"]}
+        
+        # --- Let's add a print statement for debugging ---
+        print("Chain result:", result) 
+        
+        sources = []
+        if "source_documents" in result and result["source_documents"]:
+            for doc in result["source_documents"]:
+                sources.append({
+                    "content": doc.page_content,
+                    "page": doc.metadata.get("page", "N/A")
+                })
+        
+        return {"answer": result["answer"], "sources": sources}
+        
     except Exception as e:
         print(f"Error getting answer: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to get answer. Error: {e}")
-
-# To restart the chat session (clear memory), the user just re-uploads the PDF.
-# We can add an explicit /reset endpoint later if needed.

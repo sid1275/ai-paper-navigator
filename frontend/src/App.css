@@ -118,3 +118,49 @@ button:disabled {
   background-color: #a0c7e4;
   cursor: not-allowed;
 }
+
+/* Append this to your existing App.css */
+
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+}
+.message-wrapper.user { align-self: flex-end; }
+.message-wrapper.bot, .message-wrapper.system { align-self: flex-start; }
+
+.sources-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+.source-button {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  background-color: #6c757d;
+  border-radius: 12px;
+  color: white;
+}
+.source-button:hover {
+  background-color: #5a6268;
+}
+
+.source-content {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #212529;
+  white-space: pre-wrap; /* This preserves whitespace and line breaks */
+  width: 100%;
+}
+
+.bottom-area {
+  border-top: 1px solid #ddd;
+  background-color: #f9f9f9;
+}

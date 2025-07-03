@@ -1,88 +1,96 @@
-# 📄 AI Paper Navigator
+# 📄 AI Paper Navigator 💡
 
-An intelligent document Q&A application that allows you to have a conversation with your PDF files. This project uses a Retrieval-Augmented Generation (RAG) pipeline, leveraging local embeddings for privacy and cost-effectiveness, and a powerful open-source LLM for generating accurate answers.
+An intelligent document Q&A application that allows you to have a conversation with your PDF files. This project uses a Retrieval-Augmented Generation (RAG) pipeline to provide accurate, context-aware answers with **highlighted sources** from the original document.
 
-![Demo GIF](https://github.com/sid1275/ai-paper-navigator/blob/main/assets/demo.gif?raw=true)
-
+![Demo GIF](https://raw.githubusercontent.com/YourUsername/ai-paper-navigator/main/assets/demo.gif)
+*(Remember to replace this with your actual GIF link!)*
 
 ---
 
 ## 🚀 Features
 
--   **PDF Text Extraction:** Ingests any PDF document and extracts its text content.
--   **Local & Private Embeddings:** Uses `sentence-transformers` to generate text embeddings locally on your machine. No data is sent to external services for embedding.
--   **Efficient Retrieval:** Creates a `ChromaDB` vector store for fast and semantic searching of relevant document chunks.
--   **Advanced Q&A:** Utilizes a powerful Large Language Model (LLM) via the Groq API for generating high-quality, context-aware answers.
--   **Modular Code:** Written in clean, modular Python, making it easy to extend and maintain.
+-   **Interactive Chat UI:** A clean and responsive web interface built with React and Vite.
+-   **PDF Processing:** Ingests any PDF document and extracts its text content, keeping track of page numbers.
+-   **Conversational Memory:** Remembers the context of the conversation for seamless follow-up questions.
+-   **Source Highlighting (Explainable AI):** For every answer, the application displays the exact text snippets and page numbers from the document that were used as sources, building trust and allowing for verification.
+-   **Local & Private Embeddings:** Uses `sentence-transformers` to generate text embeddings locally. No data is sent to external services for the core semantic search.
+-   **High-Performance LLM:** Utilizes the Groq API for near-instant answer generation with the powerful Llama 3 model.
 
 ---
 
 ## 🛠️ Tech Stack
 
--   **Backend:** Python
+-   **Frontend:** React (with Vite), Axios
+-   **Backend:** Python, FastAPI
 -   **AI / ML:**
     -   **Orchestration:** LangChain
     -   **LLM Provider:** Groq (Llama 3)
     -   **Embeddings:** Hugging Face `sentence-transformers` (all-MiniLM-L6-v2)
-    -   **Vector Store:** ChromaDB
--   **Core Libraries:** `pypdf`, `python-dotenv`
+    -   **Vector Store:** ChromaDB (In-memory)
+-   **Deployment:**
+    -   Backend on Render (coming soon!)
+    -   Frontend on Vercel (coming soon!)
 
 ---
 
-## ⚙️ Setup and Installation
+## ⚙️ Local Setup and Installation
 
 Follow these steps to get the project running on your local machine.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/YourUsername/ai-paper-navigator.git
-    cd ai-paper-navigator
-    ```
+### Prerequisites
 
-2.  **Create and activate a virtual environment:**
-    ```bash
-    # For Windows
-    python -m venv venv
-    .\venv\Scripts\activate
+-   Python 3.8+
+-   Node.js and npm
 
-    # For macOS/Linux
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
+### 1. Clone the repository
+git clone https://github.com/YourUsername/ai-paper-navigator.git
+cd ai-paper-navigator
 
-3.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *(Note: We will create the `requirements.txt` file in a later step).*
+2. Set up the Backend
+Generated bash
+# Create and activate a virtual environment
+python -m venv venv
+# On Windows: .\venv\Scripts\activate
+# On macOS/Linux: source venv/bin/activate
 
-4.  **Set up environment variables:**
-    -   Create a file named `.env` in the root of the project.
-    -   Add your Groq API key to it:
-    ```
-    GROQ_API_KEY="gsk_YourGroqApiKeyGoesHere"
-    ```
+# Install Python dependencies
+pip install -r requirements.txt
 
----
+# Create a .env file in the root directory and add your Groq API key
+echo 'GROQ_API_KEY="gsk_YourGroqApiKeyGoesHere"' > .env
 
-## Usage
+# Run the backend server
+uvicorn server:app --reload
 
-1.  Place the PDF you want to query inside the `documents` folder.
-2.  Update the `pdf_file_path` variable in `main.py` to point to your PDF.
-3.  Run the main script:
-    ```bash
-    python main.py
-    ```
-4.  The script will process the PDF and print the answer to the hard-coded question.
 
----
+The backend will be running at http://127.0.0.1:8000.
 
-## 🗺️ Roadmap: Future Work
+3. Set up the Frontend
+Generated bash
+# Open a new terminal in the project root
+cd frontend
 
-This is the foundation of a larger application. The next steps are:
+# Install Node.js dependencies
+npm install
 
--   [ ] **Interactive CLI:** Allow users to ask questions continuously in the terminal.
--   [ ] **FastAPI Backend:** Refactor the code into a robust REST API.
--   [ ] **React Frontend:** Build a user-friendly web interface for uploading PDFs and chatting.
--   [ ] **Conversation Memory:** Implement a system to remember the chat history for follow-up questions.
--   [ ] **Source Highlighting:** Show which parts of the document were used to generate the answer.
+# Run the frontend development server
+npm run dev
+
+The frontend will be running at http://localhost:5173 (or another port specified in the terminal). Open this URL in your browser.
+
+🗺️ Project Roadmap
+
+Core RAG Pipeline: Implement text extraction, chunking, and Q&A.
+
+Web Interface: Build a functional frontend with React.
+
+Conversational Memory: Enable follow-up questions.
+
+Source Highlighting: Display source snippets for answer verification.
+
+Deployment: Host the backend on Render and frontend on Vercel.
+
+Multiple Document Support: Allow users to upload and chat with a collection of PDFs.
+
+Error Handling & UI Polish: Improve loading states and handle more edge cases.
+
